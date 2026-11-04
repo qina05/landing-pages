@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinky Bloom Beauty 🌷</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink:#e98eae;
+  --dark:#c85e87;
+  --soft:#fff0f5;
+  --cream:#fffaf8;
+  --ink:#49343e;
+  --muted:#866f79;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,90%);margin:auto}
+.announcement{text-align:center;padding:8px;background:#f8dce7;color:#8f4d69;font-size:13px;font-weight:bold}
+header{position:sticky;top:0;z-index:20;background:#fffaf8ed;backdrop-filter:blur(12px);border-bottom:1px solid #f5e4eb}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font:700 25px 'Playfair Display',serif;color:var(--dark)}
+.nav-links{display:flex;gap:25px;list-style:none;font-size:14px;font-weight:bold;color:#715865}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta,.btn{display:inline-block;border:0;border-radius:30px;padding:12px 22px;background:linear-gradient(120deg,#eea4bf,#d879a0);color:white;font-weight:bold;cursor:pointer;box-shadow:0 8px 18px #e9a4bd55}
+.hamburger{display:none;background:none;border:0;color:var(--dark);font-size:28px;cursor:pointer}
+.hero{padding:80px 0;background:linear-gradient(120deg,#fff0f5,#fce7ef,#f4edff);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:45px}
+.eyebrow{display:inline-block;padding:7px 14px;border-radius:30px;background:white;color:var(--dark);font-size:12px;font-weight:bold}
+h1{font:700 clamp(42px,5vw,72px)/1.12 'Playfair Display',serif;margin:20px 0;color:#593b4a}
+h1 em{color:var(--dark);font-style:normal}
+.hero p{color:var(--muted);margin-bottom:25px;font-size:17px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-outline{border:1px solid #e5a5bd;color:var(--dark);padding:11px 21px;border-radius:30px;font-weight:bold;background:#ffffff99}
+.hero-photo{width:100%;height:430px;object-fit:cover;border-radius:48% 48% 25px 25px;border:8px solid #ffffffb8}
+.float-note{position:relative;margin-top:-60px;margin-left:-15px;background:white;border-radius:18px;padding:14px 18px;display:inline-block;box-shadow:0 10px 30px #b5678920;font-weight:bold;color:#87546b}
+section{padding:80px 0}
+.section-head{text-align:center;max-width:650px;margin:0 auto 38px}
+.section-kicker{color:var(--dark);font-size:12px;text-transform:uppercase;letter-spacing:3px;font-weight:bold}
+h2{font:700 clamp(30px,3.6vw,46px)/1.2 'Playfair Display',serif;margin:10px 0;color:#593b4a}
+.section-head p,.about-copy p{color:var(--muted)}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+.about-image{width:100%;height:370px;object-fit:cover;border-radius:28px}
+.about-copy p{margin:14px 0}
+.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.benefit{background:white;border:1px solid #f5e2ea;border-radius:16px;padding:13px;font-weight:bold;font-size:14px}
+.products-section{background:linear-gradient(#fff8fa,#fff)}
+.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.product-card{background:white;border:1px solid #f5e5eb;border-radius:20px;overflow:hidden;box-shadow:0 8px 24px #b76c8810;transition:.25s;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 14px 35px #b5678920}
+.product-card img{width:100%;height:190px;object-fit:cover;background:#f9eaf0}
+.product-info{padding:15px;display:flex;flex-direction:column;flex:1}
+.tag{align-self:flex-start;background:#fff0f5;color:#b65b80;border-radius:30px;padding:4px 9px;font-size:11px;font-weight:bold}
+.product-info h3{font-size:15px;margin:9px 0 5px}
+.product-info p{color:var(--muted);font-size:12px;line-height:1.5;flex:1}
+.price{color:var(--dark);font-weight:bold;margin:12px 0}
+.buy-btn{display:block;text-align:center;border-radius:12px;padding:9px;background:#f9e2eb;color:#a94f75;font-size:13px;font-weight:bold}
+.promise{background:linear-gradient(120deg,#f7eaff,#fff0f5)}
+.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.promise-card{background:#ffffffc9;padding:25px;text-align:center;border-radius:22px}
+.promise-card .icon{font-size:32px}
+.promise-card h3{margin:10px 0}
+.promise-card p{color:var(--muted);font-size:14px}
+.reviews{background:white}
+.review-box{max-width:720px;margin:auto;text-align:center;background:linear-gradient(135deg,#fff2f6,#f7f0ff);border-radius:28px;padding:35px}
+.stars{color:#e7aa58;letter-spacing:4px;font-size:20px}
+.review-text{font:600 20px/1.6 'Playfair Display',serif;margin:16px 0}
+.review-name{color:var(--dark);font-weight:bold}
+.slider-controls{display:flex;justify-content:center;gap:12px;margin-top:20px}
+.slider-controls button{width:38px;height:38px;border:1px solid #e7b1c5;border-radius:50%;background:white;color:var(--dark);cursor:pointer;font-size:20px}
+.contact{background:linear-gradient(135deg,#fff0f5,#f6efff)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px}
+.contact-copy p{color:var(--muted);margin:12px 0 20px}
+.contact-detail{margin:12px 0;font-weight:bold;color:#80586b}
+form{background:white;padding:28px;border-radius:24px;box-shadow:0 14px 35px #b5678920}
+label{display:block;font-size:14px;font-weight:bold;margin:12px 0 6px}
+input,textarea{width:100%;border:1px solid #ecd9e2;background:#fffafb;padding:12px 14px;border-radius:12px;outline:none;font:inherit}
+input:focus,textarea:focus{border-color:var(--pink)}
+textarea{min-height:115px;resize:vertical}
+.form-message{margin-top:12px;font-size:14px;font-weight:bold;color:#54856a}
+footer{background:#593f4d;color:#fff0f5;padding:38px 0 20px}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}
+footer h3{font:700 21px 'Playfair Display',serif;margin-bottom:10px}
+footer p,footer a{color:#f2dce5;font-size:14px}
+.footer-links{display:grid;gap:7px}
+.copyright{border-top:1px solid #ffffff26;text-align:center;margin-top:28px;padding-top:18px;font-size:12px;color:#e5cbd6}
+@media(max-width:1000px){.product-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){
+.hamburger{display:block}
+.nav-cta{display:none}
+.nav-links{display:none;position:absolute;top:76px;left:0;right:0;padding:20px 5%;background:#fffaf8;flex-direction:column;gap:15px;border-bottom:1px solid #f5e4eb}
+.nav-links.open{display:flex}
+.hero{padding:55px 0}
+.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+.hero-photo{height:330px}
+.about-image{height:280px}
+.product-grid{grid-template-columns:repeat(2,1fr);gap:13px}
+.product-card img{height:160px}
+.promise-grid,.footer-grid{grid-template-columns:1fr}
+section{padding:60px 0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">🌸 Welcome to Pinky Bloom Beauty — cantik, nyaman, dan penuh percaya diri! 🌸</div>
+
+<header>
+<div class="container nav">
+<a class="logo" href="#home">Pinky Bloom ✿</a>
+<button class="hamburger" id="hamburger">☰</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Beranda</a></li>
+<li><a href="#about">Tentang</a></li>
+<li><a href="#products">Produk</a></li>
+<li><a href="#reviews">Ulasan</a></li>
+<li><a href="#contact">Kontak</a></li>
+</ul>
+<a class="nav-cta" href="#products">Belanja Yuk ♡</a>
+</div>
+</header>
+
+<section class="hero" id="home">
+<div class="container hero-grid">
+<div>
+<span class="eyebrow">YOUR DAILY DOSE OF PRETTY ✨</span>
+<h1>Glow cantik, <em>mulai dari</em> dirimu.</h1>
+<p>Temukan makeup dan skincare pilihan untuk menemani hari-harimu. Rawat kulit, ekspresikan gayamu, dan bersinar dengan caramu sendiri.</p>
+<div class="hero-actions">
+<a class="btn" href="#products">Lihat Koleksi ♡</a>
+<a class="btn-outline" href="#about">Kenalan Yuk</a>
+</div>
+</div>
+<div>
+<img class="hero-photo" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1000&q=85" alt="Koleksi kosmetik estetik">
+<div class="float-note">🌸 Little things, lovely glow!</div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="container about-grid">
+<img class="about-image" src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85" alt="Produk skincare">
+<div class="about-copy">
+<span class="section-kicker">A little about us</span>
+<h2>Beauty feels better when it feels like you.</h2>
+<p>Pinky Bloom Beauty adalah toko makeup dan skincare dengan pilihan produk untuk membantu kamu merawat diri dan tampil percaya diri setiap hari.</p>
+<p>Kami ingin pengalaman belanja kecantikan terasa menyenangkan, simpel, dan penuh warna pink yang bikin happy.</p>
+<div class="benefits">
+<div class="benefit">🎀 Pilihan produk beragam</div>
+<div class="benefit">🌷 Belanja mudah</div>
+<div class="benefit">💗 Pelayanan ramah</div>
+<div class="benefit">✨ Teman glow-up kamu</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="products-section" id="products">
+<div class="container">
+<div class="section-head">
+<span class="section-kicker">Our lovely collection</span>
+<h2>Temukan favoritmu ♡</h2>
+<p>Sepuluh pilihan makeup dan skincare untuk melengkapi beauty routine kamu.</p>
+</div>
+
+<div class="product-grid">
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80" alt="Serum wajah">
+<div class="product-info"><span class="tag">SKINCARE</span><h3>Glow Dew Serum</h3><p>Serum harian untuk membantu kulit terasa lembap dan tampak segar.</p><div class="price">Rp89.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Glow%20Dew%20Serum">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=80" alt="Moisturizer">
+<div class="product-info"><span class="tag">SKINCARE</span><h3>Cloud Cream Moisturizer</h3><p>Pelembap untuk membantu menjaga kelembapan kulit sepanjang hari.</p><div class="price">Rp75.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Cloud%20Cream">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80" alt="Sunscreen">
+<div class="product-info"><span class="tag">SKINCARE</span><h3>Sunny Day Sunscreen</h3><p>Perlindungan harian untuk membantu menjaga kulit saat beraktivitas.</p><div class="price">Rp68.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Sunny%20Day">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1599733589046-10c005739ef0?auto=format&fit=crop&w=700&q=80" alt="Lip tint">
+<div class="product-info"><span class="tag">MAKEUP</span><h3>Juicy Tint</h3><p>Warna bibir segar dengan tampilan glossy untuk sehari-hari.</p><div class="price">Rp49.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Juicy%20Tint">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80" alt="Palet makeup">
+<div class="product-info"><span class="tag">MAKEUP</span><h3>Rosy Blush Palette</h3><p>Palet warna lembut untuk memberi rona manis pada pipi.</p><div class="price">Rp79.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Rosy%20Blush">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80" alt="Kuas makeup">
+<div class="product-info"><span class="tag">MAKEUP</span><h3>Soft Touch Brush Set</h3><p>Set kuas makeup untuk membantu aplikasi produk lebih rapi.</p><div class="price">Rp99.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Brush%20Set">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1591360236480-4ed861025fa1?auto=format&fit=crop&w=700&q=80" alt="Cushion makeup">
+<div class="product-info"><span class="tag">MAKEUP</span><h3>Velvet Skin Cushion</h3><p>Cushion praktis untuk tampilan complexion yang terlihat halus.</p><div class="price">Rp115.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Velvet%20Skin%20Cushion">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1583241800698-e8ab01830a8b?auto=format&fit=crop&w=700&q=80" alt="Masker wajah">
+<div class="product-info"><span class="tag">SKINCARE</span><h3>Petal Soft Face Mask</h3><p>Masker wajah untuk momen self-care yang menenangkan.</p><div class="price">Rp35.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Face%20Mask">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=80" alt="Lipstick">
+<div class="product-info"><span class="tag">MAKEUP</span><h3>Bloom Matte Lipstick</h3><p>Lipstik dengan pilihan nuansa warna untuk melengkapi gayamu.</p><div class="price">Rp59.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Bloom%20Matte%20Lipstick">Pesan sekarang</a></div>
+</article>
+
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80" alt="Pembersih wajah">
+<div class="product-info"><span class="tag">SKINCARE</span><h3>Milky Cleanser</h3><p>Pembersih wajah untuk membantu mengangkat kotoran dan sisa makeup.</p><div class="price">Rp55.000</div><a class="buy-btn" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Milky%20Cleanser">Pesan sekarang</a></div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section class="promise">
+<div class="container">
+<div class="section-head">
+<span class="section-kicker">Why bloom with us?</span>
+<h2>Belanja jadi lebih menyenangkan</h2>
+<p>Hal-hal kecil yang bikin pengalaman belanja terasa spesial.</p>
+</div>
+<div class="promise-grid">
+<div class="promise-card"><div class="icon">🎀</div><h3>Pilihan Manis</h3><p>Koleksi makeup dan skincare yang bisa kamu pilih sesuai kebutuhan.</p></div>
+<div class="promise-card"><div class="icon">💌</div><h3>Mudah Dipesan</h3><p>Hubungi kami melalui WhatsApp untuk bertanya dan melakukan pemesanan.</p></div>
+<div class="promise-card"><div class="icon">🌷</div><h3>Dengan Sepenuh Hati</h3><p>Kami siap membantu menjawab pertanyaan seputar produk.</p></div>
+</div>
+</div>
+</section>
+
+<section class="reviews" id="reviews">
+<div class="container">
+<div class="section-head">
+<span class="section-kicker">Sweet words</span>
+<h2>Cerita dari pelanggan ♡</h2>
+<p>Contoh tampilan ulasan untuk landing page toko kamu.</p>
+</div>
+<div class="review-box">
+<div class="stars">★★★★★</div>
+<p class="review-text" id="reviewText">“Packaging-nya lucu banget dan pilihan produknya menarik. Jadi semangat merawat diri!”</p>
+<div class="review-name" id="reviewName">— Alya, pelanggan</div>
+<div class="slider-controls">
+<button id="prevReview">‹</button>
+<button id="nextReview">›</button>
+</div>
+</div>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<div class="container contact-grid">
+<div class="contact-copy">
+<span class="section-kicker">Say hello</span>
+<h2>Yuk, ngobrol dengan kami!</h2>
+<p>Punya pertanyaan tentang produk atau ingin melakukan pemesanan? Kirim pesan melalui formulir ini.</p>
+<div class="contact-detail">💌 WhatsApp: 08xx-xxxx-xxxx</div>
+<div class="contact-detail">📷 Instagram: @pinkybloombeauty</div>
+<div class="contact-detail">📍 Alamat: Isi alamat toko kamu di sini</div>
+</div>
+
+<form id="contactForm">
+<h3>Kirim pesan 💗</h3>
+<label for="name">Nama lengkap</label>
+<input id="name" type="text" placeholder="Nama kamu" required>
+
+<label for="phone">Nomor HP / WhatsApp</label>
+<input id="phone" type="tel" placeholder="Contoh: 081234567890" required>
+
+<label for="question">Pertanyaan atau pesan</label>
+<textarea id="question" placeholder="Tulis pesan kamu di sini..." required></textarea>
+
+<button class="btn" type="submit" style="margin-top:16px;width:100%">Kirim Pesan ♡</button>
+<p class="form-message" id="formMessage"></p>
+</form>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div><h3>Pinky Bloom Beauty ✿</h3><p>Glow cantik, nyaman, dan percaya diri setiap hari. Terima kasih sudah mampir ke toko kecil kami!</p></div>
+<div><h3>Jelajahi</h3><div class="footer-links"><a href="#home">Beranda</a><a href="#about">Tentang Kami</a><a href="#products">Katalog Produk</a><a href="#reviews">Ulasan</a></div></div>
+<div><h3>Temukan Kami</h3><div class="footer-links"><a href="https://instagram.com/">Instagram</a><a href="https://wa.me/6281234567890">WhatsApp</a><p>Alamat: isi alamat toko kamu</p></div></div>
+</div>
+<div class="copyright">© 2026 Pinky Bloom Beauty. Made with ♡ and a little sprinkle of pink.</div>
+</div>
+</footer>
+
+<script>
+// Menu hamburger untuk HP
+const hamburger=document.getElementById('hamburger');
+const navLinks=document.getElementById('navLinks');
+
+hamburger.addEventListener('click',()=>{
+  const isOpen=navLinks.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded',isOpen);
+  hamburger.textContent=isOpen?'×':'☰';
+});
+
+navLinks.querySelectorAll('a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    navLinks.classList.remove('open');
+    hamburger.textContent='☰';
+  });
+});
+
+// Slider ulasan
+const reviews=[
+ {text:'“Packaging-nya lucu banget dan pilihan produknya menarik. Jadi semangat merawat diri!”',name:'— Alya, pelanggan'},
+ {text:'“Adminnya ramah dan membantu menjelaskan pilihan produk. Pengalaman belanjanya menyenangkan.”',name:'— Nisa, pelanggan'},
+ {text:'“Suka banget sama tampilan tokonya yang gemas. Semoga koleksinya makin banyak!”',name:'— Caca, pelanggan'}
+];
+
+let reviewIndex=0;
+
+function showReview(){
+ document.getElementById('reviewText').textContent=reviews[reviewIndex].text;
+ document.getElementById('reviewName').textContent=reviews[reviewIndex].name;
+}
+
+document.getElementById('prevReview').addEventListener('click',()=>{
+ reviewIndex=(reviewIndex-1+reviews.length)%reviews.length;
+ showReview();
+});
+
+document.getElementById('nextReview').addEventListener('click',()=>{
+ reviewIndex=(reviewIndex+1)%reviews.length;
+ showReview();
+});
+
+// Validasi form dan kirim pesan melalui WhatsApp
+document.getElementById('contactForm').addEventListener('submit',function(event){
+ event.preventDefault();
+
+ const name=document.getElementById('name').value.trim();
+ const phone=document.getElementById('phone').value.trim();
+ const question=document.getElementById('question').value.trim();
+ const message=document.getElementById('formMessage');
+
+ if(!name||!phone||!question){
+   message.style.color='#b94e72';
+   message.textContent='Yuk, lengkapi semua kolom terlebih dahulu.';
+   return;
+ }
+
+ if(!/^[0-9+\-\s()]{8,18}$/.test(phone)){
+   message.style.color='#b94e72';
+   message.textContent='Periksa kembali nomor HP kamu, ya.';
+   return;
+ }
+
+ message.textContent='Terima kasih! Pesan WhatsApp sedang disiapkan...';
+
+ const text=`Halo Pinky Bloom Beauty!\nNama: ${name}\nNo. HP: ${phone}\nPesan: ${question}`;
+ window.open('https://wa.me/6281234567890?text='+encodeURIComponent(text),'_blank');
+});
+</script>
+
+</body>
+</html>
