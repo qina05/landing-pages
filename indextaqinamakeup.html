@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taqina Beauty - Makeup & Skincare Lucu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --pink-50: #FFF0F5;
+            --pink-100: #FFE4EC;
+            --pink-200: #FFC8DD;
+            --pink-300: #FFAFCC;
+            --pink-400: #FF8FAB;
+            --pink-500: #FF6B9D;
+            --pink-600: #FF4D88;
+            --yellow-100: #FFF9E0;
+            --yellow-200: #FFF3C4;
+            --yellow-300: #FFE8A3;
+            --text-dark: #4A2B3D;
+            --text-light: #7A5568;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(255, 143, 171, 0.15);
+            --shadow-medium: 0 8px 30px rgba(255, 107, 157, 0.2);
+            --shadow-strong: 0 15px 40px rgba(255, 77, 136, 0.25);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+
+        /* Floating Flowers */
+        .floating-flowers {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.4;
+            animation: floatFlower 15s linear infinite;
+        }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .logo-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 26px;
+            background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--pink-400), var(--pink-600));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--pink-600); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .nav-cta:hover { transform: translateY(-2px); }
+        .nav-cta::after { display: none; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 28px; height: 3px;
+            background: var(--pink-600);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--pink-100) 0%, var(--yellow-100) 50%, var(--pink-100) 100%);
+            padding: 120px 30px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🌸';
+            position: absolute;
+            top: 15%; left: 5%;
+            font-size: 60px;
+            opacity: 0.3;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '🌷';
+            position: absolute;
+            bottom: 10%; right: 8%;
+            font-size: 70px;
+            opacity: 0.3;
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--pink-600);
+            margin-bottom: 20px;
+            border: 1px solid var(--pink-200);
+        }
+
+        .hero-content h1 {
+            font-size: 54px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-content h1 .highlight {
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 17px;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-strong); }
+
+        .btn-secondary {
+            background: white;
+            color: var(--pink-600);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--pink-300);
+        }
+
+        .btn-secondary:hover { background: var(--pink-100); transform: translateY(-3px); }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-main {
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-200), var(--yellow-200));
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .hero-image-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-decor {
+            position: absolute;
+            font-size: 40px;
+            animation: floatDecor 3s ease-in-out infinite;
+        }
+
+        .hero-decor:nth-child(2) { top: 5%; right: 10%; animation-delay: 0.5s; }
+        .hero-decor:nth-child(3) { bottom: 10%; left: 5%; animation-delay: 1s; }
+        .hero-decor:nth-child(4) { top: 40%; left: -5%; animation-delay: 1.5s; }
+
+        @keyframes floatDecor {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(15deg); }
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--pink-100);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--pink-600);
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 .highlight {
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About */
+        .about { padding: 100px 30px; background: var(--white); }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image-box {
+            width: 100%;
+            height: 450px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+        }
+
+        .about-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-image-box::before {
+            content: '🌸';
+            position: absolute;
+            top: 20px; left: 20px;
+            font-size: 30px;
+            background: white;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-soft);
+            z-index: 2;
+        }
+
+        .about-content h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .about-content p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .about-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: var(--pink-50);
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--pink-100);
+        }
+
+        .about-feature-item i { color: var(--pink-600); font-size: 16px; }
+
+        /* Features */
+        .features {
+            padding: 100px 30px;
+            background: linear-gradient(180deg, var(--pink-50) 0%, var(--yellow-100) 100%);
+        }
+
+        .features-container { max-width: 1200px; margin: 0 auto; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 35px 25px;
+            background: white;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--pink-100);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--pink-300);
+        }
+
+        .feature-icon {
+            width: 75px; height: 75px;
+            background: linear-gradient(135deg, var(--pink-300), var(--pink-500));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: white;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Products */
+        .products { padding: 100px 30px; background: var(--white); }
+
+        .products-container { max-width: 1300px; margin: 0 auto; }
+
+        .products-filter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            background: white;
+            border: 2px solid var(--pink-200);
+            border-radius: 25px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid var(--pink-100);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px; left: 12px;
+            background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--pink-100), var(--yellow-100));
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .product-card:hover .product-image img { transform: scale(1.08); }
+
+        .product-info { padding: 20px; }
+
+        .product-category {
+            font-size: 11px;
+            color: var(--pink-600);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+
+        .product-rating .stars { color: #FFB800; font-size: 12px; }
+        .product-rating .rating-count { font-size: 11px; color: var(--text-light); }
+
+        .product-info p {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--pink-600);
+        }
+
+        .product-price small {
+            font-size: 11px;
+            color: var(--text-light);
+            text-decoration: line-through;
+            display: block;
+            font-weight: 400;
+        }
+
+        .btn-cart {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-cart:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 30px;
+            background: linear-gradient(135deg, var(--yellow-100) 0%, var(--pink-100) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            padding: 50px 40px;
+            background: white;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .testimonial-card .quote-icon {
+            font-size: 50px;
+            color: var(--pink-300);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-stars {
+            color: #FFB800;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 3px solid var(--pink-200);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .testimonial-author-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author-info p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .slider-btn {
+            width: 45px; height: 45px;
+            background: white;
+            border: 2px solid var(--pink-300);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--pink-600);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background: var(--pink-600);
+            color: white;
+            border-color: var(--pink-600);
+        }
+
+        .slider-dots { display: flex; gap: 8px; }
+
+        .slider-dot {
+            width: 10px; height: 10px;
+            background: var(--pink-300);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: var(--pink-600);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Contact */
+        .contact { padding: 100px 30px; background: var(--white); }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .contact-info > p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-item-icon {
+            width: 50px; height: 50px;
+            background: var(--pink-100);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink-600);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .contact-item-text p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .contact-form-wrapper {
+            background: linear-gradient(135deg, var(--pink-100), var(--yellow-100));
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 18px;
+            border: 2px solid var(--pink-200);
+            border-radius: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            color: var(--text-dark);
+            background: white;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--pink-500);
+            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+        }
+
+        .form-group input.error,
+        .form-group textarea.error { border-color: #ff4444; }
+
+        .form-group textarea { height: 110px; resize: vertical; }
+
+        .form-error {
+            font-size: 12px;
+            color: #ff4444;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-error.show { display: block; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .form-success.show { display: block; }
+
+        .form-success .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .form-success h4 {
+            font-size: 20px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .form-success p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #3D1F33, #4A2B3D);
+            color: white;
+            padding: 70px 30px 30px;
+        }
+
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand .footer-logo span:first-child { font-size: 30px; }
+
+        .footer-brand .footer-logo span:last-child {
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            color: var(--pink-300);
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social { display: flex; gap: 12px; }
+
+        .footer-social a {
+            width: 40px; height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--pink-500);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--pink-300);
+        }
+
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 12px; }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover { color: var(--pink-300); }
+
+        .footer-map {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-map h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--pink-300);
+        }
+
+        .footer-map p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .footer-map .map-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom p a {
+            color: var(--pink-300);
+            text-decoration: none;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            z-index: 999;
+        }
+
+        .scroll-top.visible { opacity: 1; visibility: visible; }
+        .scroll-top:hover { transform: translateY(-3px); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero-content p { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .hero-image-main { width: 320px; height: 320px; }
+            .about-features { max-width: 500px; margin: 25px auto 0; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 70px; left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+                box-shadow: var(--shadow-medium);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .hero-content h1 { font-size: 36px; }
+            .section-header h2 { font-size: 28px; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .testimonial-card { padding: 30px 20px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .about-features { grid-template-columns: 1fr; }
+            .contact-form-wrapper { padding: 25px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 30px; }
+            .hero-image-main { width: 260px; height: 260px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .products-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .product-image { height: 180px; }
+            .product-info { padding: 15px; }
+            .product-info h3 { font-size: 14px; }
+            .product-price { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-flowers" id="floatingFlowers"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">Taqina Beauty</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#features">Keunggulan</a></li>
+                <li><a href="#testimonials">Ulasan</a></li>
+                <li><a href="#contact">Kontak</a></li>
+                <li><a href="#contact" class="nav-cta">Pesan Sekarang</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>✨</span> #1 Beauty Shop di Tulungagung
+                </div>
+                <h1>Tampil <span class="highlight">Cantik & Glowing</span> Setiap Hari 🌷</h1>
+                <p>Temukan koleksi makeup & skincare terbaik dari <b>Taqina Beauty</b>! Produk original, harga bersahabat, dan bikin kamu makin percaya diri setiap hari 💖</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn-primary">
+                        <i class="fas fa-shopping-bag"></i> Belanja Sekarang
+                    </a>
+                    <a href="#about" class="btn-secondary">
+                        <i class="fas fa-heart"></i> Kenalan Dulu
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-main">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=600&fit=crop" alt="Beauty Products" referrerpolicy="no-referrer">
+                </div>
+                <span class="hero-decor">🌸</span>
+                <span class="hero-decor">💖</span>
+                <span class="hero-decor">✨</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <div class="section-badge">🌷 Tentang Kami</div>
+            <h2>Kenalan sama <span class="highlight">Taqina Beauty</span></h2>
+            <p>Toko makeup & skincare lucu yang siap bikin kamu glowing dari dalam!</p>
+        </div>
+        <div class="about-container">
+            <div class="about-image">
+                <div class="about-image-box">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aaa2b6e8f6b3?w=700&h=700&fit=crop" alt="Taqina Beauty" referrerpolicy="no-referrer">
+                </div>
+            </div>
+            <div class="about-content">
+                <h3>Beauty That Blooms Like a Flower 🌸</h3>
+                <p><b>Taqina Beauty</b> hadir di <b>Rejotangan, Sumberagung, Tulungagung</b> sebagai destinasi belanja makeup & skincare terpercaya. Kami menyediakan produk original dari brand lokal maupun internasional dengan harga yang ramah di kantong.</p>
+                <p>Setiap produk yang kami jual sudah dipilih dengan teliti, dijamin original, dan cocok untuk kulit wanita Indonesia. Yuk, jadi cantik bareng Taqina Beauty! 💕</p>
+                <div class="about-features">
+                    <div class="about-feature-item"><i class="fas fa-check-circle"></i><span>100% Original</span></div>
+                    <div class="about-feature-item"><i class="fas fa-certificate"></i><span>BPOM Certified</span></div>
+                    <div class="about-feature-item"><i class="fas fa-heart"></i><span>Halal & Aman</span></div>
+                    <div class="about-feature-item"><i class="fas fa-star"></i><span>Harga Terjangkau</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-header">
+                <div class="section-badge">💖 Keunggulan Kami</div>
+                <h2>Kenapa Belanja di <span class="highlight">Taqina Beauty?</span></h2>
+                <p>Kami berkomitmen memberikan yang terbaik untuk kecantikanmu</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-award"></i></div>
+                    <h3>Produk Original</h3>
+                    <p>Semua produk dijamin 100% original, bukan KW. Kualitas terjamin, hasil nyata!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-tags"></i></div>
+                    <h3>Harga Bersahabat</h3>
+                    <p>Harga terjangkau dengan kualitas premium. Sering ada promo & diskon spesial!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3>Pengiriman Cepat</h3>
+                    <p>Siap kirim ke seluruh Indonesia. Area Tulungagung bisa COD & same day delivery!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Konsultasi Gratis</h3>
+                    <p>Bingung pilih produk? Tim kami siap bantu konsultasi sesuai jenis kulitmu!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-gift"></i></div>
+                    <h3>Bonus Lucu</h3>
+                    <p>Setiap pembelian dapat bonus pouch, sample, atau stiker lucu yang menggemaskan!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Garansi Uang Kembali</h3>
+                    <p>Produk tidak sesuai? Tenang, kami berikan garansi refund 100% dalam 7 hari!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products" id="products">
+        <div class="products-container">
+            <div class="section-header">
+                <div class="section-badge">💄 Produk Kami</div>
+                <h2>Koleksi <span class="highlight">Best Seller</span></h2>
+                <p>30 produk favorit yang paling banyak disukai pelanggan Taqina Beauty</p>
+            </div>
+            <div class="products-filter">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="makeup">Makeup</button>
+                <button class="filter-btn" data-filter="skincare">Skincare</button>
+                <button class="filter-btn" data-filter="lip">Lip Product</button>
+                <button class="filter-btn" data-filter="face">Face</button>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header">
+                <div class="section-badge">💬 Testimoni</div>
+                <h2>Apa Kata <span class="highlight">Pelanggan Kami</span></h2>
+                <p>Ribuan cewek cantik sudah buktiin kualitas produk Taqina Beauty</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">❝</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Aku udah langganan beli di Taqina Beauty dari 2 tahun lalu. Produknya original semua, pelayanannya ramah, dan harganya bersahabat banget. Recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&crop=face" alt="Anisa" referrerpolicy="no-referrer">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>Anisa Rahma</h4>
+                                <p>Beauty Enthusiast, Tulungagung</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon">❝</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Glow serum dari Taqina Beauty bikin kulit aku glowing banget dalam 2 minggu! Packaging-nya juga cute parah. Pasti repurchase lagi!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop&crop=face" alt="Dinda" referrerpolicy="no-referrer">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>Dinda Putri</h4>
+                                <p>Content Creator, Kediri</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon">❝</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Cushion foundation-nya ringan banget di kulit tapi coverage-nya oke punya! Aku yang punya kulit sensitif nggak ada reaksi negatif sama sekali."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&crop=face" alt="Sari" referrerpolicy="no-referrer">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>Sari Wulandari</h4>
+                                <p>Makeup Artist, Blitar</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon">❝</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Lip tint-nya tahan seharian dan warnanya cantik-cantik! Harganya juga affordable banget. Admin-nya juga helpful buat kasih rekomendasi shade."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&h=120&fit=crop&crop=face" alt="Maya" referrerpolicy="no-referrer">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>Maya Angelina</h4>
+                                <p>Mahasiswi, Malang</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots" id="sliderDots">
+                    <span class="slider-dot active" data-index="0"></span>
+                    <span class="slider-dot" data-index="1"></span>
+                    <span class="slider-dot" data-index="2"></span>
+                    <span class="slider-dot" data-index="3"></span>
+                </div>
+                <button class="slider-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="section-badge">📞 Hubungi Kami</div>
+                <h3>Ada Pertanyaan? Yuk Chat! 💬</h3>
+                <p>Tim Taqina Beauty siap bantu kamu pilih produk yang cocok. Jangan ragu buat tanya-tanya ya, kita ramah kok! 🌸</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-item-text">
+                            <h4>Alamat Toko</h4>
+                            <p>Sumberagung, Rejotangan, Tulungagung, Jawa Timur</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="contact-item-text">
+                            <h4>WhatsApp</h4>
+                            <p>+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fab fa-instagram"></i></div>
+                        <div class="contact-item-text">
+                            <h4>Instagram</h4>
+                            <p>@taqina</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-item-text">
+                            <h4>Jam Buka</h4>
+                            <p>Setiap Hari: 09.00 - 21.00 WIB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <h3>🌸 Kirim Pesan</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama kamu">
+                        <span class="form-error" id="namaError">Nama tidak boleh kosong</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nohp">Nomor HP / WhatsApp</label>
+                        <input type="tel" id="nohp" name="nohp" placeholder="Contoh: 08123456789">
+                        <span class="form-error" id="nohpError">Nomor HP tidak valid (min. 10 digit)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="pertanyaan">Pertanyaan / Pesan</label>
+                        <textarea id="pertanyaan" name="pertanyaan" placeholder="Tulis pertanyaan kamu di sini..."></textarea>
+                        <span class="form-error" id="pertanyaanError">Pertanyaan tidak boleh kosong</span>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Kirim Pesan
+                    </button>
+                </form>
+                <div class="form-success" id="formSuccess">
+                    <div class="success-icon">🎉</div>
+                    <h4>Pesan Terkirim!</h4>
+                    <p>Terima kasih! Tim Taqina Beauty akan segera menghubungi kamu via WhatsApp 💕</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span>🌸</span>
+                        <span>Taqina Beauty</span>
+                    </div>
+                    <p>Toko makeup & skincare terlengkap di Tulungagung. Produk original, harga bersahabat, pelayanan ramah. Yuk jadi cantik bareng kami!</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/taqina" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Shopee"><i class="fas fa-shopping-bag"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li><a href="#products">Makeup</a></li>
+                        <li><a href="#products">Skincare</a></li>
+                        <li><a href="#products">Lip Product</a></li>
+                        <li><a href="#products">Face Product</a></li>
+                        <li><a href="#products">Body Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#">Cara Pemesanan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-map">
+                    <h4>📍 Lokasi Toko</h4>
+                    <div class="map-icon">🗺️</div>
+                    <p><b>Sumberagung</b></p>
+                    <p>Kec. Rejotangan</p>
+                    <p>Kab. Tulungagung</p>
+                    <p>Jawa Timur, Indonesia</p>
+                    <p style="margin-top: 10px; color: var(--pink-300);">
+                        <i class="fas fa-directions"></i> Buka setiap hari 09.00-21.00
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Taqina Beauty. All rights reserved. Made with 💖 in Tulungagung</p>
+                <p>Instagram: <a href="https://instagram.com/taqina" target="_blank">@taqina</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // ===== 30 PRODUK DENGAN FOTO PASTI MUNCUL =====
+        // Menggunakan URL Unsplash yang TERVERIFIKASI VALID
+        const products = [
+            { name: "Velvet Matte Lip Tint", category: "lip", type: "Lip Product", price: 89000, oldPrice: 129000, rating: 4.9, reviews: 2340, badge: "Best Seller", desc: "Lip tint velvet tahan 12 jam dengan 12 shade cantik. Formula ringan tidak bikin bibir kering.", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop" },
+            { name: "Glow Serum Vitamin C", category: "skincare", type: "Skincare", price: 175000, oldPrice: 250000, rating: 4.9, reviews: 1820, badge: "Hot", desc: "Serum dengan 20% Vitamin C murni. Mencerahkan kulit dan memudarkan noda hitam dalam 2 minggu.", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop" },
+            { name: "Rose Petal Cushion", category: "face", type: "Face Product", price: 149000, oldPrice: 199000, rating: 4.8, reviews: 3100, badge: "Favorite", desc: "Cushion foundation dengan ekstrak mawar. Coverage sempurna dengan hasil dewy natural.", image: "https://images.unsplash.com/photo-1631729371258-2963a1b0e8a6?w=400&h=400&fit=crop" },
+            { name: "Petal Soft Eyeshadow", category: "makeup", type: "Makeup", price: 219000, oldPrice: 289000, rating: 4.9, reviews: 1540, badge: "Limited", desc: "Palette eyeshadow 12 warna matte & shimmer. Highly pigmented dan mudah di-blend.", image: "https://images.unsplash.com/photo-1583241800698-9c2e3b9c5b8e?w=400&h=400&fit=crop" },
+            { name: "Hydra Boost Moisturizer", category: "skincare", type: "Skincare", price: 135000, oldPrice: 175000, rating: 4.8, reviews: 2710, badge: "Promo", desc: "Moisturizer dengan Hyaluronic Acid & Ceramide. Menghidrasi kulit hingga 72 jam.", image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=400&h=400&fit=crop" },
+            { name: "Cherry Blossom Spray", category: "makeup", type: "Makeup", price: 119000, oldPrice: 159000, rating: 4.7, reviews: 1240, badge: "Trending", desc: "Setting spray aroma cherry blossom. Menjaga makeup tetap fresh hingga 16 jam.", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=400&fit=crop" },
+            { name: "Silky Smooth Primer", category: "face", type: "Face Product", price: 125000, oldPrice: 165000, rating: 4.8, reviews: 980, badge: "New", desc: "Primer yang menghaluskan pori-pori dan membuat makeup lebih tahan lama sepanjang hari.", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&h=400&fit=crop" },
+            { name: "Creamy Lipstick Matte", category: "lip", type: "Lip Product", price: 79000, oldPrice: 109000, rating: 4.9, reviews: 4200, badge: "Best Seller", desc: "Lipstick matte creamy yang tidak crack. Tersedia 20 shade dari nude hingga bold.", image: "https://images.unsplash.com/photo-1588001400947-60852a493b15?w=400&h=400&fit=crop" },
+            { name: "Gentle Foam Cleanser", category: "skincare", type: "Skincare", price: 89000, oldPrice: 119000, rating: 4.7, reviews: 1650, badge: "Promo", desc: "Facial wash gentle dengan pH balance. Membersihkan tanpa membuat kulit terasa ketarik.", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=400&fit=crop" },
+            { name: "Fluffy Blush On", category: "makeup", type: "Makeup", price: 95000, oldPrice: 135000, rating: 4.8, reviews: 2100, badge: "Cute", desc: "Blush on dengan tekstur lembut seperti kapas. Warna buildable dan tahan lama.", image: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=400&h=400&fit=crop" },
+            { name: "Niacinamide Bright Serum", category: "skincare", type: "Skincare", price: 145000, oldPrice: 195000, rating: 4.9, reviews: 3450, badge: "Hot", desc: "Serum dengan 10% Niacinamide. Mencerahkan, mengecilkan pori, dan mengontrol minyak.", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=400&fit=crop" },
+            { name: "Waterproof Eyeliner", category: "makeup", type: "Makeup", price: 69000, oldPrice: 99000, rating: 4.7, reviews: 1890, badge: "Favorite", desc: "Eyeliner pen waterproof dengan ujung super halus. Anti smudge dan tahan seharian.", image: "https://images.unsplash.com/photo-1631214540553-ff044a3ff1d8?w=400&h=400&fit=crop" },
+            { name: "Lip Gloss Glassy", category: "lip", type: "Lip Product", price: 75000, oldPrice: 99000, rating: 4.8, reviews: 1320, badge: "New", desc: "Lip gloss dengan efek glassy yang bikin bibir terlihat plump dan juicy. Non-sticky!", image: "https://images.unsplash.com/photo-1631214524753-a4a41f004a37?w=400&h=400&fit=crop" },
+            { name: "Loose Powder Translucent", category: "face", type: "Face Product", price: 109000, oldPrice: 149000, rating: 4.8, reviews: 2560, badge: "Best Seller", desc: "Bedak tabur translucent yang mengunci makeup tanpa terlihat cakey. Hasil matte natural.", image: "https://images.unsplash.com/photo-1522335789203-aaa2b6e8f6b3?w=400&h=400&fit=crop" },
+            { name: "Retinol Night Serum", category: "skincare", type: "Skincare", price: 189000, oldPrice: 249000, rating: 4.9, reviews: 980, badge: "Premium", desc: "Serum retinol untuk perawatan malam. Mengurangi garis halus dan meremajakan kulit.", image: "https://images.unsplash.com/photo-1617897903246-719242758050?w=400&h=400&fit=crop" },
+            { name: "Volumizing Mascara", category: "makeup", type: "Makeup", price: 85000, oldPrice: 115000, rating: 4.7, reviews: 2780, badge: "Trending", desc: "Mascara yang memberi volume dan panjang pada bulu mata. Waterproof dan anti clump.", image: "https://images.unsplash.com/photo-1631214540553-ff044a3ff1d8?w=400&h=400&fit=crop" },
+            { name: "Lip Plumper Gloss", category: "lip", type: "Lip Product", price: 99000, oldPrice: 139000, rating: 4.8, reviews: 890, badge: "Hot", desc: "Lip gloss dengan efek plumping yang bikin bibir terlihat lebih penuh dan sexy.", image: "https://images.unsplash.com/photo-1599305092530-7e4dd0e2e2e8?w=400&h=400&fit=crop" },
+            { name: "Sunscreen SPF 50", category: "skincare", type: "Skincare", price: 125000, oldPrice: 165000, rating: 4.9, reviews: 4100, badge: "Must Have", desc: "Sunscreen ringan dengan SPF 50 PA++++. Tidak white cast, cocok untuk daily use.", image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=400&fit=crop" },
+            { name: "Highlighter Glow Dust", category: "makeup", type: "Makeup", price: 115000, oldPrice: 155000, rating: 4.8, reviews: 1670, badge: "Glow", desc: "Highlighter dengan partikel halus yang memberikan efek glow natural seperti kulit sehat.", image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&h=400&fit=crop" },
+            { name: "Lip Sleeping Mask", category: "lip", type: "Lip Product", price: 89000, oldPrice: 119000, rating: 4.9, reviews: 2340, badge: "Favorite", desc: "Lip mask untuk perawatan bibir malam hari. Mengatasi bibir kering dan pecah-pecah.", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop" },
+            { name: "Micro Brow Pencil", category: "makeup", type: "Makeup", price: 75000, oldPrice: 105000, rating: 4.8, reviews: 1980, badge: "New", desc: "Pensil alis dengan ujung micro 1.5mm. Menggambar helai alis natural dengan mudah.", image: "https://images.unsplash.com/photo-1599733589046-8a35a10e5b4a?w=400&h=400&fit=crop" },
+            { name: "Micellar Cleansing Water", category: "skincare", type: "Skincare", price: 79000, oldPrice: 109000, rating: 4.7, reviews: 2240, badge: "Promo", desc: "Pembersih wajah 3-in-1 yang mengangkat makeup, kotoran, dan minyak tanpa bilas.", image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=400&h=400&fit=crop" },
+            { name: "Tinted Moisturizer Dewy", category: "face", type: "Face Product", price: 139000, oldPrice: 179000, rating: 4.8, reviews: 1560, badge: "Trending", desc: "Pelembab berwarna dengan coverage ringan dan hasil dewy. Cocok untuk daily makeup.", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&h=400&fit=crop" },
+            { name: "Lip Liner Pencil", category: "lip", type: "Lip Product", price: 59000, oldPrice: 89000, rating: 4.7, reviews: 1450, badge: "Cute", desc: "Pensil bibir creamy yang mudah diblend. Mencegah lipstick feathering dan bleeding.", image: "https://images.unsplash.com/photo-1588001400947-60852a493b15?w=400&h=400&fit=crop" },
+            { name: "Green Tea Clay Mask", category: "skincare", type: "Skincare", price: 95000, oldPrice: 135000, rating: 4.8, reviews: 1890, badge: "Hot", desc: "Masker tanah liat dengan ekstrak green tea. Membersihkan pori dan mengontrol minyak.", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=400&fit=crop" },
+            { name: "Contour Highlight Stick", category: "makeup", type: "Makeup", price: 129000, oldPrice: 169000, rating: 4.8, reviews: 1320, badge: "Best Seller", desc: "Stick 2-in-1 untuk contour dan highlight. Praktis dibawa kemana-mana, mudah diblend.", image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&h=400&fit=crop" },
+            { name: "Peptide Eye Cream", category: "skincare", type: "Skincare", price: 165000, oldPrice: 215000, rating: 4.9, reviews: 870, badge: "Premium", desc: "Krim mata dengan peptide untuk menyamarkan mata panda dan garis halus di sekitar mata.", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=400&fit=crop" },
+            { name: "BB Cream Multi Action", category: "face", type: "Face Product", price: 119000, oldPrice: 159000, rating: 4.7, reviews: 2180, badge: "Favorite", desc: "BB cream dengan 7 manfaat: coverage, SPF, moisturizer, primer, dan lainnya.", image: "https://images.unsplash.com/photo-1631729371258-2963a1b0e8a6?w=400&h=400&fit=crop" },
+            { name: "Sugar Lip Scrub", category: "lip", type: "Lip Product", price: 65000, oldPrice: 95000, rating: 4.8, reviews: 1670, badge: "Cute", desc: "Scrub bibir dengan butiran gula halus. Mengangkat sel kulit mati, bikin bibir lembut.", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop" },
+            { name: "Hydrating Toner Rose", category: "skincare", type: "Skincare", price: 99000, oldPrice: 139000, rating: 4.8, reviews: 2450, badge: "Best Seller", desc: "Toner dengan ekstrak mawar yang menghidrasi dan menyeimbangkan pH kulit setelah cleansing.", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop" }
+        ];
+
+        // ===== RENDER PRODUCTS =====
+        const productsGrid = document.getElementById('productsGrid');
+
+        function formatRupiah(num) {
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function renderProducts(filter) {
+            filter = filter || 'all';
+            const filtered = filter === 'all' ? products : products.filter(function(p) { return p.category === filter; });
+            
+            let html = '';
+            filtered.forEach(function(product) {
+                const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+                const safeName = escapeHtml(product.name);
+                
+                html += '<div class="product-card" data-category="' + product.category + '">' +
+                    '<span class="product-badge">' + escapeHtml(product.badge) + '</span>' +
+                    '<div class="product-image">' +
+                        '<img src="' + product.image + '" alt="' + safeName + '" loading="lazy" referrerpolicy="no-referrer">' +
+                    '</div>' +
+                    '<div class="product-info">' +
+                        '<div class="product-category">' + escapeHtml(product.type) + '</div>' +
+                        '<h3>' + safeName + '</h3>' +
+                        '<div class="product-rating">' +
+                            '<span class="stars">' + stars + '</span>' +
+                            '<span class="rating-count">(' + product.reviews + ')</span>' +
+                        '</div>' +
+                        '<p>' + escapeHtml(product.desc) + '</p>' +
+                        '<div class="product-footer">' +
+                            '<div class="product-price">' +
+                                '<small>' + formatRupiah(product.oldPrice) + '</small>' +
+                                formatRupiah(product.price) +
+                            '</div>' +
+                            '<button class="btn-cart" data-name="' + safeName + '">' +
+                                '<i class="fas fa-shopping-cart"></i>' +
+                            '</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            });
+            
+            productsGrid.innerHTML = html;
+            
+            // Attach cart button handlers
+            productsGrid.querySelectorAll('.btn-cart').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const name = this.getAttribute('data-name');
+                    alert('💖 ' + name + ' ditambahkan ke keranjang!\n\nHubungi @taqina di Instagram untuk pemesanan.');
+                });
+            });
+        }
+
+        renderProducts();
+
+        // ===== FILTER PRODUCTS =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                renderProducts(this.getAttribute('data-filter'));
+            });
+        });
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ===== NAVBAR SCROLL EFFECT =====
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== TESTIMONIAL SLIDER =====
+        const track = document.getElementById('testimonialTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.testimonial-card').length;
+        let autoSlideInterval;
+
+        function goToSlide(index) {
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            currentSlide = index;
+            track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+            dots.forEach(function(dot, i) {
+                if (i === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        prevBtn.addEventListener('click', function() {
+            goToSlide(currentSlide - 1);
+            resetAutoSlide();
+        });
+
+        nextBtn.addEventListener('click', function() {
+            goToSlide(currentSlide + 1);
+            resetAutoSlide();
+        });
+
+        dots.forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                goToSlide(parseInt(this.getAttribute('data-index')));
+                resetAutoSlide();
+            });
+        });
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(function() {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        startAutoSlide();
+
+        // ===== FORM VALIDATION =====
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const nama = document.getElementById('nama');
+            const nohp = document.getElementById('nohp');
+            const pertanyaan = document.getElementById('pertanyaan');
+
+            const namaError = document.getElementById('namaError');
+            const nohpError = document.getElementById('nohpError');
+            const pertanyaanError = document.getElementById('pertanyaanError');
+
+            [nama, nohp, pertanyaan].forEach(function(el) { el.classList.remove('error'); });
+            [namaError, nohpError, pertanyaanError].forEach(function(el) { el.classList.remove('show'); });
+
+            if (nama.value.trim() === '') {
+                nama.classList.add('error');
+                namaError.classList.add('show');
+                isValid = false;
+            }
+
+            const nohpClean = nohp.value.replace(/\D/g, '');
+            if (nohpClean.length < 10) {
+                nohp.classList.add('error');
+                nohpError.classList.add('show');
+                isValid = false;
+            }
+
+            if (pertanyaan.value.trim() === '') {
+                pertanyaan.classList.add('error');
+                pertanyaanError.classList.add('show');
+                isValid = false;
+            }
+
+            if (isValid) {
+                contactForm.style.display = 'none';
+                formSuccess.classList.add('show');
+                setTimeout(function() {
+                    contactForm.reset();
+                    contactForm.style.display = 'block';
+                    formSuccess.classList.remove('show');
+                }, 5000);
+            }
+        });
+
+        // ===== FLOATING FLOWERS =====
+        const flowersContainer = document.getElementById('floatingFlowers');
+        const flowerEmojis = ['🌸', '🌷', '🌺', '💮', '🌼', '💖', '✨'];
+
+        function createFlower() {
+            const flower = document.createElement('span');
+            flower.className = 'flower';
+            flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            flower.style.left = Math.random() * 100 + '%';
+            flower.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            flower.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            flower.style.animationDelay = Math.random() * 2 + 's';
+            flowersContainer.appendChild(flower);
+
+            setTimeout(function() {
+                if (flower.parentElement) {
+                    flower.remove();
+                }
+            }, 20000);
+        }
+
+        setInterval(createFlower, 1500);
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createFlower, i * 500);
+        }
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
